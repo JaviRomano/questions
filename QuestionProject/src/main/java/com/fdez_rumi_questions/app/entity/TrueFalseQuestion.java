@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "true_or_false_question")
+@Table(name = "true_false_question")
 public class TrueFalseQuestion extends Question {	
 	
 	@Column(name = "answer")

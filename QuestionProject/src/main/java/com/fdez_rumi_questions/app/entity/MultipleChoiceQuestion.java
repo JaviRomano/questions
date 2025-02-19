@@ -2,20 +2,16 @@ package com.fdez_rumi_questions.app.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 
 @Entity
 public class MultipleChoiceQuestion extends Question{
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "fail_answers")
+	@Column(name = "fail_answers")
 	private List<String> failAnswers;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "correct_answers")
+	@Column(name = "correct_answers")
     private List<String> correctAnswers;
 	
 	public MultipleChoiceQuestion() {}

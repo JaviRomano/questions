@@ -9,8 +9,7 @@ import com.fdez_rumi_questions.app.entity.Question;
 public interface QuestionRepository extends JpaRepository<Question, Long>{
 
 	Page <Question> findByActiveTrue(Pageable pageable);
-	Page <Question> findByCategoryTrueOrderByIdAsc(String category, Pageable pageable);	
+	Page <Question> findByCategoryAndActiveTrueOrderByIdAsc(String category, Pageable pageable);	
 	
-	//long CountByCategory(String category);
 	boolean existsByText(String text);	
 }

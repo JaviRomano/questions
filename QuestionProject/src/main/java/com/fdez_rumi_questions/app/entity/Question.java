@@ -14,22 +14,19 @@ import jakarta.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "typeOfQuestion")
-@JsonSubTypes({ @JsonSubTypes.Type(value = TrueFalseQuestion.class, name = "TRUE_OR_FALSE"),
-		@JsonSubTypes.Type(value = MultipleChoiceQuestion.class, name = "MULTIPLE_QUESTION"), })
+@JsonSubTypes({ @JsonSubTypes.Type(value = TrueFalseQuestion.class, name = "TRUE_FALSE_QUESTION"),
+		@JsonSubTypes.Type(value = MultipleChoiceQuestion.class, name = "MULTIPLE_CHOICE_QUESTION"), })
 public abstract class Question {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 
-	@Column(name = "question", unique = true)
+	@Column(name = "text", unique = true)
 	private String text;
 
 	@Column(name = "category")
 	private String category;
-
-	@Column(name = "answer")
-	private boolean answer = true;
 	
 	@Column(name = "active")
     private boolean active = true;
@@ -64,14 +61,6 @@ public abstract class Question {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	public boolean isAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(boolean answer) {
-		this.answer = answer;
 	}
 	
 	public boolean isActive() {

@@ -2,8 +2,6 @@ package com.fdez_rumi_questions.app.service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,21 +27,19 @@ public class QuestionService {
 
 	public void updateQuestion(Long id, Question updatedQuestion) {
 		Question previousQuestion = questionRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("No existe registro con el ID[[" + id + "]]"));
+				.orElseThrow(() -> new EntityNotFoundException("No existe registro con el ID[[" + id + "]]"));
 
 		previousQuestion.setText(updatedQuestion.getText());
 		previousQuestion.setCategory(updatedQuestion.getCategory());
 
 		if (previousQuestion instanceof TrueFalseQuestion && updatedQuestion instanceof TrueFalseQuestion) {
 			((TrueFalseQuestion) previousQuestion).setAnswer(((TrueFalseQuestion) updatedQuestion).getAnswer());
-		} else if (previousQuestion instanceof MultipleChoiceQuestion
-				&& updatedQuestion instanceof MultipleChoiceQuestion) {
+		} else if (previousQuestion instanceof MultipleChoiceQuestion && updatedQuestion instanceof MultipleChoiceQuestion) {
 			((MultipleChoiceQuestion) previousQuestion)
 					.setCorrectAnswers(((MultipleChoiceQuestion) updatedQuestion).getCorrectAnswers());
 			((MultipleChoiceQuestion) previousQuestion)
 					.setFailAnswers(((MultipleChoiceQuestion) updatedQuestion).getFailAnswers());
 		}
-
 		questionRepository.save(previousQuestion);
 	}
 
@@ -52,7 +48,8 @@ public class QuestionService {
 	}
 
 	public Question getQuestionById(Long id) {
-		return questionRepository.findById(id).orElse(null);
+		return questionRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Pregunta con ID " + id + " no encontrada."));	    
 	}
 
 	public void offQuestionById(Long id) {
@@ -64,7 +61,7 @@ public class QuestionService {
 
 	public Page<Question> getAllQuestionActivePageable() {
 		return getAllQuestionActivePageable(0, 10);
-	}
+    }
 
 	public Page<Question> getAllQuestionActivePageable(int page, int size) {
 		PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
@@ -73,7 +70,7 @@ public class QuestionService {
 
 	public Page<Question> getAllQuestionActivePageable(String category, int page, int size) {
 		PageRequest pageable = PageRequest.of(page, size);
-		return questionRepository.findByCategoryTrueOrderByIdAsc(category, pageable);
+		return questionRepository.findByCategoryAndActiveTrueOrderByIdAsc(category, pageable);
 	}
 
 	public List<Integer> getNumberOfPages(Page<Question> questionPage) {
@@ -82,6 +79,13 @@ public class QuestionService {
 
 	public Question createQuestion(Question question) {
 		return questionRepository.save(question);
+	}
+	 
+	public void deleteQuestion(Long id) {
+		if (!questionRepository.existsById(id)) {
+			throw new EntityNotFoundException("No existe pregunta con ID:" + id);
+		}
+		questionRepository.deleteById(id);
 	}
 
 	public void deleteAll() {

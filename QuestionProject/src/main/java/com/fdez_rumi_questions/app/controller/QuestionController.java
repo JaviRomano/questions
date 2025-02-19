@@ -25,12 +25,14 @@ public class QuestionController {
 	private QuestionService questionService;
 		
 	@GetMapping("/question")	
-	public String showQuestions(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
-								@RequestParam(required = false) String category, Model model) {
+	public String showQuestions(@RequestParam(defaultValue = "0") int page,
+								@RequestParam(defaultValue = "10") int size,
+								@RequestParam(required = false) String category,
+								Model model) {
 		Page<Question> questionPage;
 		if (category != null) {
 			questionPage = questionService.getAllQuestionActivePageable(category, page, size);
-			model.addAttribute("category", category.toString());
+			model.addAttribute("category", category);
 		} else {
 			questionPage = questionService.getAllQuestionActivePageable(page, size);
 			model.addAttribute("category", "");
@@ -41,45 +43,19 @@ public class QuestionController {
 		model.addAttribute("pageNumbers", questionService.getNumberOfPages(questionPage));
 		return "list-questions";
 	}
-		
-	@GetMapping("/new")
-	public String createQuestion(Model model, @RequestParam(required = false) String stage,
-			@RequestParam(required = false) String questionType, @RequestParam(required = false) String category) {
-		
-		String currentStage = (stage == null) ? "first" : stage;
-		model.addAttribute("stage", currentStage);
-		model.addAttribute("categories", category.equals(currentStage));		
-		if ("second".equals(currentStage)) {
-			model.addAttribute("questionType", questionType);
-			model.addAttribute("category", category);
-		}
-		return "add-question";
-	}
-	
-	@PostMapping("/new")
-	public String processFormToAddNewQuestion(@RequestParam String questionType, @RequestParam String category,
-			RedirectAttributes redirectAttributes) {
-		if (!"MULTIPLE_QUESTION".equals(questionType) && !"TRUE_OR_FALSE".equals(questionType)) {
-			return "redirect:/question/new";
-		}
-		redirectAttributes.addAttribute("stage", "second");
-		redirectAttributes.addAttribute("questionType", questionType);
-		redirectAttributes.addAttribute("category", category);
-		return "redirect:/question/new";
-	}
 	
 	@PostMapping("/upload")
-	public String uploadQuestionFromTheFormFile(@RequestParam MultipartFile file, Model model, RedirectAttributes redirectAttributes) {
+	public String uploadQuestionFromFile(@RequestParam MultipartFile file,
+										 Model model,
+										 RedirectAttributes redirectAttributes) {
 		try {
-			String jsonContent = new String(file.getBytes());
-			
-			 ObjectMapper objectMapper = new ObjectMapper();
-		        objectMapper.readTree(jsonContent);
+			String jsonContent = new String(file.getBytes());			
+			ObjectMapper objectMapper = new ObjectMapper();
+		    objectMapper.readTree(jsonContent);
 		        
-			questionService.proccessQuestionFromJson(jsonContent);
-			
+			questionService.proccessQuestionFromJson(jsonContent);			
 			model.addAttribute("questions", questionService.getAllQuestionActivePageable());
-			redirectAttributes.addFlashAttribute("success", "Todo bien");
+			redirectAttributes.addFlashAttribute("success", "Archivo JSON cargado con éxito");
 			
 			return "redirect:/question/all";
 		} catch (IOException | IllegalArgumentException e) {
@@ -87,30 +63,4 @@ public class QuestionController {
 			return "add-question-file";
 		}
 	}
-		
-//	@PostMapping("/save")
-//	public String saveOrPudateQuestion(@RequestParam(required = false) Long id,
-//									   @RequestParam String text,
-//									   @RequestParam(required = false) String correctAnswer,
-//									   @RequestParam(required = false) String failAnswer,
-//									   @RequestParam(required = false) String answer,
-//									   @RequestParam String questionType,
-//									   @RequestParam String categoty,
-//									   RedirectAttributes redirectAttributes) {
-//		TypeOfQuestion tipeOfQuestion = TypeOfQuestion.valueOf(questionType);
-//		String category = questionService.g
-//		
-//	}
-
-//	@DeleteMapping("/{id}")
-//	public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
-//		questionService.deleteQuestion(id);
-//		return ResponseEntity.noContent().build();
-//	}
-	
-//	@GetMapping("/add-questions-from-file")
-//	public String showUploadPage() {
-//	    return "add-questions-from-file";
-//	}
-
 }
