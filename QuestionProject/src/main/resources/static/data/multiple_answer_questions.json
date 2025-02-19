@@ -1,0 +1,51 @@
+[
+  {
+    "text": "¿Cuáles de los siguientes países están en América del Sur?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "GEOGRAFIA",
+    "incorrectAnswers": ["México", "España", "Canadá"],
+    "correctAnswers": ["Argentina", "Brasil", "Perú"]
+  },
+  {
+    "text": "¿Cuáles son colores primarios?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "CIENCIA",
+    "incorrectAnswers": ["Verde", "Naranja", "Marrón"],
+    "correctAnswers": ["Rojo", "Azul", "Amarillo"]
+  },
+  {
+    "text": "¿Cuáles de los siguientes elementos son gases nobles?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "CIENCIA",
+    "incorrectAnswers": ["Hidrógeno", "Oxígeno", "Nitrógeno"],
+    "correctAnswers": ["Neón", "Argón", "Helio"]
+  },
+  {
+    "text": "¿Cuáles fueron presidentes de EE.UU.?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "HISTORIA",
+    "incorrectAnswers": ["Napoleón Bonaparte", "Winston Churchill", "Adolf Hitler"],
+    "correctAnswers": ["George Washington", "Abraham Lincoln", "Barack Obama"]
+  },
+  {
+    "text": "¿Cuáles de estos animales son mamíferos?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "BIOLOGIA",
+    "incorrectAnswers": ["Cocodrilo", "Pingüino", "Serpiente"],
+    "correctAnswers": ["Perro", "Delfín", "Murciélago"]
+  },
+  {
+    "text": "¿Cuáles de estos libros fueron escritos por William Shakespeare?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "LITERATURA",
+    "incorrectAnswers": ["Don Quijote", "La Odisea", "Orgullo y prejuicio"],
+    "correctAnswers": ["Hamlet", "Romeo y Julieta", "Macbeth"]
+  },
+  {
+    "text": "¿Cuáles de los siguientes planetas tienen anillos?",
+    "typeOfQuestion": "MULTIPLE_QUESTION",
+    "category": "ASTRONOMIA",
+    "incorrectAnswers": ["Venus", "Marte", "Tierra"],
+    "correctAnswers": ["Saturno", "Júpiter", "Urano"]
+  }
+]

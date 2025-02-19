@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head}"></head>
+<body>
+	<div th:replace="fragments/navbar :: navbar"></div>
+
+	<div class="container mt-5">
+		<h1>Lista de Preguntas</h1>
+		<table th:if="${!questions.isEmpty()}" class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Texto</th>
+					<th>Categoria</th>
+					<th>Tipo de pregunta</th>
+					<th>Acciones CRUD</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="question : ${questions}">
+					<td><a th:href="@{/question/id/{id}(id=${question.id})}"
+						class="text-reset" role="button"> <span
+						th:text="${question.id}"></span></a></td>
+					<td th:text="${question.text}"></td>
+					<td th:text="${question.getCategory().getSimpleName()}"></td>
+					<td th:text="${question.typeOfQuestion.translate}"></td>
+					<td><a th:href="@{/questions/{id}(id=${question.id})}"
+						class="btn btn-info btn-sm">Ver</a> <a
+						th:href="@{/question-edit/{id}(id=${question.id})}"
+						class="btn btn-warning btn-sm">Editar</a> <a
+						th:href="@{/question/delete/{id}(id=${question.id})}"
+						class="btn btn-danger btn-sm">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/new-question}" class="btn btn-success">Crear Nueva
+			Pregunta</a>
+	</div>
+	<a href="/">Volver a Inicio</a>
+	<div style="position: relative; height: 100vh;">
+		<div
+			style="background-image: url('/img/riddler1.jpg'); background-size: cover; background-position: center; opacity: 0.5; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+		<div th:replace="~{fragments/footer :: footer}"></div>
+		<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>
