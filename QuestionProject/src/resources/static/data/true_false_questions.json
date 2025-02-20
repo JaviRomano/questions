@@ -1,0 +1,72 @@
+[
+	{
+		"text": "La Gran Muralla China es visible desde el espacio.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "CULTURA_GENERAL",
+		"correctAnswer": false,
+		"active": true
+	},
+	{
+		"text": "El agua hierve a 100 grados Celsius a nivel del mar.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "CIENCIA",
+		"correctAnswer": true,
+		"active": true
+	},
+	{
+		"text": "Albert Einstein ganó el Premio Nobel por la teoría de la relatividad.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "HISTORIA",
+		"correctAnswer": false,
+        "active": true
+	},
+	{
+		"text": "Los humanos y los dinosaurios coexistieron en la Tierra.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "HISTORIA",
+		"correctAnswer": false,
+        "active": true
+	},
+	{
+		"text": "El río Amazonas es el más largo del mundo.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "GEOGRAFIA",
+		"correctAnswer": false,
+        "active": true
+	},
+	{
+		"text": "El Monte Everest es la montaña más alta del mundo.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "GEOGRAFIA",
+		"correctAnswer": true,
+        "active": true
+	},
+	{
+		"text": "El Vaticano es el país más pequeño del mundo.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "GEOGRAFIA",
+		"correctAnswer": true,
+        "active": true
+	},
+	{
+		"text": "Los murciélagos son mamíferos.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "BIOLOGIA",
+		"correctAnswer": true,
+        "active": true
+	},
+	{
+		"text": "Las pirámides de Egipto fueron construidas por esclavos.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "HISTORIA",
+		"correctAnswer": false,
+        "active": true
+	},
+	{
+		"text": "La electricidad fue descubierta por Benjamin Franklin.",
+		"typeOfQuestion": "TRUE_FALSE_QUESTION",
+		"category": "CIENCIA",
+		"correctAnswer": false,
+        "active": true
+	}
+]

@@ -1,0 +1,114 @@
+[
+    {
+        "text": "¿Cuáles de los siguientes países están en América del Sur?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "GEOGRAFIA",
+        "failAnswers": [
+            "México",
+            "España",
+            "Canadá"
+        ],
+        "correctAnswers": [
+            "Argentina",
+            "Brasil",
+            "Perú"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles son colores primarios?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "CIENCIA",
+        "failAnswers": [
+            "Verde",
+            "Naranja",
+            "Marrón"
+        ],
+        "correctAnswers": [
+            "Rojo",
+            "Azul",
+            "Amarillo"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles de los siguientes elementos son gases nobles?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "CIENCIA",
+        "failAnswers": [
+            "Hidrógeno",
+            "Oxígeno",
+            "Nitrógeno"
+        ],
+        "correctAnswers": [
+            "Neón",
+            "Argón",
+            "Helio"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles fueron presidentes de EE.UU.?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "HISTORIA",
+        "failAnswers": [
+            "Napoleón Bonaparte",
+            "Winston Churchill",
+            "Adolf Hitler"
+        ],
+        "correctAnswers": [
+            "George Washington",
+            "Abraham Lincoln",
+            "Barack Obama"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles de estos animales son mamíferos?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "BIOLOGIA",
+        "failAnswers": [
+            "Cocodrilo",
+            "Pingüino",
+            "Serpiente"
+        ],
+        "correctAnswers": [
+            "Perro",
+            "Delfín",
+            "Murciélago"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles de estos libros fueron escritos por William Shakespeare?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "LITERATURA",
+        "failAnswers": [
+            "Don Quijote",
+            "La Odisea",
+            "Orgullo y prejuicio"
+        ],
+        "correctAnswers": [
+            "Hamlet",
+            "Romeo y Julieta",
+            "Macbeth"
+        ],
+        "active": true
+    },
+    {
+        "text": "¿Cuáles de los siguientes planetas tienen anillos?",
+        "typeOfQuestion": "MULTIPLE_CHOICE_QUESTION",
+        "category": "ASTRONOMIA",
+        "failAnswers": [
+            "Venus",
+            "Marte",
+            "Tierra"
+        ],
+        "correctAnswers": [
+            "Saturno",
+            "Júpiter",
+            "Urano"
+        ],
+        "active": true
+    }
+]
