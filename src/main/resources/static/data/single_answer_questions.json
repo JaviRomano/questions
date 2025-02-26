@@ -1,0 +1,72 @@
+[
+  {
+    "text": "¿Cuál es el metal más abundante en la corteza terrestre?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "CIENCIA",
+    "options": [ "Hierro", "Cobre", "Aluminio", "Plata" ],
+    "correctAnswer": "Aluminio"
+  },
+  {
+    "text": "¿Cuál es la capital de Canadá?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "GEOGRAFIA",
+    "options": [ "Toronto", "Montreal", "Ottawa", "Vancouver" ],
+    "correctAnswer": "Ottawa"
+  },
+  {
+    "text": "¿Quién pintó la Mona Lisa?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "ARTE",
+    "options": [ "Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet" ],
+    "correctAnswer": "Leonardo da Vinci"
+  },
+  {
+    "text": "¿En qué año llegó el hombre a la Luna?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "HISTORIA",
+    "options": [ "1965", "1969", "1972", "1959" ],
+    "correctAnswer": "1969"
+  },
+  {
+    "text": "¿Cuál es el río más largo del mundo?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "GEOGRAFIA",
+    "options": [ "Amazonas", "Nilo", "Misisipi", "Yangtsé" ],
+    "correctAnswer": "Amazonas"
+  },
+  {
+    "text": "¿Cuál es el resultado de 9 x 8?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "MATEMATICAS",
+    "options": [ "81", "72", "69", "64" ],
+    "correctAnswer": "72"
+  },
+  {
+    "text": "¿Cuál es el órgano más grande del cuerpo humano?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "BIOLOGIA",
+    "options": [ "Hígado", "Corazón", "Piel", "Pulmones" ],
+    "correctAnswer": "Piel"
+  },
+  {
+    "text": "¿Cuál de estos países es el más poblado?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "GEOGRAFIA",
+    "options": [ "Estados Unidos", "India", "Brasil", "Rusia" ],
+    "correctAnswer": "India"
+  },
+  {
+    "text": "¿Cuál es el símbolo químico del oro?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "CIENCIA",
+    "options": [ "Au", "Ag", "Fe", "Pb" ],
+    "correctAnswer": "Au"
+  },
+  {
+    "text": "¿Cuál es el idioma más hablado en el mundo?",
+    "typeOfQuestion": "SINGLE_CHOICE_QUESTION",
+    "category": "IDIOMAS",
+    "options": [ "Inglés", "Español", "Chino mandarín", "Hindú" ],
+    "correctAnswer": "Chino mandarín"
+  }
+]
