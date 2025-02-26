@@ -9,9 +9,9 @@ export function createNavbar() {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="api/question/all">Preguntas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/question/all">Preguntas</a></li>
                         <li class="nav-item"><a class="nav-link" href="api/question/add">Crear nueva pregunta</a></li>
-						<li class="nav-item"><a class="nav-link" href="question/upload">Importar desde Json</a></li>
+						<li class="nav-item"><a class="nav-link" href="/question/upload">Importar desde Json</a></li>
                     </ul>
                 </div>
             </div>

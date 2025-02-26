@@ -34,7 +34,8 @@ public class QuestionService {
 
 		if (previousQuestion instanceof TrueFalseQuestion && updatedQuestion instanceof TrueFalseQuestion) {
 			((TrueFalseQuestion) previousQuestion).setAnswer(((TrueFalseQuestion) updatedQuestion).getAnswer());
-		} else if (previousQuestion instanceof MultipleChoiceQuestion && updatedQuestion instanceof MultipleChoiceQuestion) {
+		} else if (previousQuestion instanceof MultipleChoiceQuestion
+				&& updatedQuestion instanceof MultipleChoiceQuestion) {
 			((MultipleChoiceQuestion) previousQuestion)
 					.setCorrectAnswers(((MultipleChoiceQuestion) updatedQuestion).getCorrectAnswers());
 			((MultipleChoiceQuestion) previousQuestion)
@@ -49,7 +50,7 @@ public class QuestionService {
 
 	public Question getQuestionById(Long id) {
 		return questionRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("Pregunta con ID " + id + " no encontrada."));	    
+				.orElseThrow(() -> new EntityNotFoundException("Pregunta con ID " + id + " no encontrada."));
 	}
 
 	public void offQuestionById(Long id) {
@@ -61,7 +62,7 @@ public class QuestionService {
 
 	public Page<Question> getAllQuestionActivePageable() {
 		return getAllQuestionActivePageable(0, 10);
-    }
+	}
 
 	public Page<Question> getAllQuestionActivePageable(int page, int size) {
 		PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
@@ -80,7 +81,7 @@ public class QuestionService {
 	public Question createQuestion(Question question) {
 		return questionRepository.save(question);
 	}
-	 
+
 	public void deleteQuestion(Long id) {
 		if (!questionRepository.existsById(id)) {
 			throw new EntityNotFoundException("No existe pregunta con ID:" + id);
@@ -92,25 +93,15 @@ public class QuestionService {
 		questionRepository.deleteAll();
 	}
 
-	public void importQuestionFromFile(List<Question> questions) {
-		for (Question question : questions) {
-			if (!questionRepository.existsByText(question.getText())) {
-				if (question instanceof MultipleChoiceQuestion
-						&& ((MultipleChoiceQuestion) question).getFailAnswers().size() != 3) {
-					System.err.println("Error tamaño incorrect answer");
-					throw new IllegalArgumentException(
-							"Todas las preguntas con respuesta múltiple deben tener 3 respuestas incorrectas.");
-				} else {
-					questionRepository.save(question);
-				}
-			}
-		}
-	}
-
-	public void proccessQuestionFromJson(String jsonContent) throws IOException, IllegalArgumentException {
+	public void proccessQuestionFromJson(String jsonContent) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Question> questions = objectMapper.readValue(jsonContent,
 				objectMapper.getTypeFactory().constructCollectionType(List.class, Question.class));
-		importQuestionFromFile(questions);
+		
+		for (Question question : questions) {
+			if (!questionRepository.existsByText(question.getText())) {
+				questionRepository.save(question);
+			}
+		}		
 	}
 }

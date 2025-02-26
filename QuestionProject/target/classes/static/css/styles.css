@@ -1,4 +1,4 @@
-@charset "UTF-8";
+ @charset "UTF-8";
 
 * {
 	margin: 0;
@@ -121,4 +121,20 @@ td:nth-child(5) {
             font-weight: bold;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
-  
+        
+ /* ESTILOS EN ALL */
+  .bg-custom {
+    background-image: url('/img/riddler3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
