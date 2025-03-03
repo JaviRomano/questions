@@ -22,11 +22,11 @@ public abstract class Question {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 
-	@Column(name = "text", unique = true)
-	private String text;
-
 	@Column(name = "category")
 	private String category;
+	
+	@Column(name = "text", unique = true)
+	private String text;	
 	
 	@Column(name = "active")
     private boolean active = true;
@@ -34,9 +34,9 @@ public abstract class Question {
 	public Question() {
 	}
 
-	public Question(String text, String category) {
-		this.text = text;
+	public Question( String category, String text) {		
 		this.category = category;
+		this.text = text;
 	}
 
 	public long getId() {
@@ -72,4 +72,5 @@ public abstract class Question {
 	}
 
 	public abstract TypeOfQuestion getTypeOfQuestion();
+
 }

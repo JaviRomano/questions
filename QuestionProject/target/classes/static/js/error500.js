@@ -11,17 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
     subtitle.style.cssText = "color: #555; font-size: 1.5em; margin-bottom: 20px;";
 
     const img = document.createElement("img");
-    img.src = "/img/error500.png"; // Asegúrate de tener esta imagen en tu carpeta static/img
+    img.src = "/img/luffy.jpg";
     img.alt = "Error 500";
     img.style.cssText = "max-width: 300px; margin-bottom: 20px;";
 
     const message = document.createElement("p");
-    message.textContent = "Por favor, intenta nuevamente más tarde o contacta al soporte si el problema persiste.";
+    message.textContent = "Estamos trabajando para volver a la normalidad cuanto antes.";
     message.style.cssText = "color: #777; font-size: 1.2em; max-width: 600px;";
 
     const backButton = document.createElement("button");
     backButton.textContent = "Volver al inicio";
-    backButton.style.cssText = "background-color: #5bc0de; color: white; border: none; padding: 10px 20px; font-size: 1.2em; cursor: pointer; border-radius: 5px;";
+    backButton.style.cssText = "background-color: #28a745; color: white; border: none; padding: 10px 20px; font-size: 1.2em; cursor: pointer; border-radius: 5px;";
     backButton.addEventListener("click", function () {
         window.location.href = "/";
     });

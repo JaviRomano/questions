@@ -8,17 +8,21 @@ document.addEventListener("DOMContentLoaded", function() {
 	  
 	body.prepend(createNavbar());	
 
+	const title = document.createElement("h1");
+	title.classList.add("title-overlay");
+	title.textContent = "Bienvenido a la Aplicación de Preguntas";
+	
 	const backgroundContainer = document.createElement("div");
 	backgroundContainer.classList.add("background-container");
 	backgroundContainer.innerHTML = `
 	<img src="/img/riddler2.jpg" alt="Fondo">
-	<h1 class="title-overlay">Bienvenido a la Aplicación de Preguntas</h1>
 	`;
 
 	const apiButtonDiv = document.createElement("div");
 	apiButtonDiv.classList.add("position-fixed", "bottom-0", "start-0", "m-3");
 	apiButtonDiv.innerHTML = `<a href="/api/question/doc" class="btn btn-success">Documentación API</a>`;
 
+	body.appendChild(title);
 	body.appendChild(backgroundContainer);
 	body.appendChild(apiButtonDiv);
 });

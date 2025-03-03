@@ -2,13 +2,10 @@ package com.fdez_rumi_questions.app.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,34 +50,16 @@ public class QuestionService {
 				.orElseThrow(() -> new EntityNotFoundException("Pregunta con ID " + id + " no encontrada."));
 	}
 
-	public void offQuestionById(Long id) {
-		Question question = questionRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("No existe la pregunta con id[" + id + "]."));
-		question.setActive(false);
-		questionRepository.save(question);
-	}
-
-	public Page<Question> getAllQuestionActivePageable() {
-		return getAllQuestionActivePageable(0, 10);
-	}
-
-	public Page<Question> getAllQuestionActivePageable(int page, int size) {
-		PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Order.asc("id")));
-		return questionRepository.findByActiveTrue(pageable);
-	}
-
-	public Page<Question> getAllQuestionActivePageable(String category, int page, int size) {
-		PageRequest pageable = PageRequest.of(page, size);
-		return questionRepository.findByCategoryAndActiveTrueOrderByIdAsc(category, pageable);
-	}
-
-	public List<Integer> getNumberOfPages(Page<Question> questionPage) {
-		return IntStream.range(0, questionPage.getTotalPages()).boxed().collect(Collectors.toList());
-	}
-
 	public Question createQuestion(Question question) {
 		return questionRepository.save(question);
 	}
+	
+	public Set<String> getAllCategories() {
+        return questionRepository.findAll()
+                .stream()
+                .map(Question::getCategory)
+                .collect(Collectors.toSet());
+    }
 
 	public void deleteQuestion(Long id) {
 		if (!questionRepository.existsById(id)) {
@@ -103,5 +82,19 @@ public class QuestionService {
 				questionRepository.save(question);
 			}
 		}		
+	}
+
+	public void desactivateById(Long id) {
+		Question question = questionRepository.findById(id)
+		        .orElseThrow(() -> new EntityNotFoundException("Pregunta no encontrada " + id));
+		question.setActive(false);
+		questionRepository.save(question);
+	}
+	
+	public void reactivateById(Long id) {
+		Question question = questionRepository.findById(id)
+		        .orElseThrow(() -> new EntityNotFoundException("Pregunta no encontrada " + id));
+		question.setActive(true);
+		questionRepository.save(question);
 	}
 }

@@ -2,6 +2,7 @@ package com.fdez_rumi_questions.app.controller.rest;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class QuestionRestController {
 		}
 		return ResponseEntity.ok(question);
 	}
-
+	
 	@PostMapping("/add")
 	public ResponseEntity<Question> addQuestion(@RequestBody Question newQuestionData) {
 		try {
@@ -52,6 +53,12 @@ public class QuestionRestController {
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
+	}
+	
+	@GetMapping("/categories")
+	public ResponseEntity<Set<String>> getCategories() {
+	    Set<String> categories = questionService.getAllCategories();
+	    return ResponseEntity.ok(categories);
 	}
 
 	@PutMapping("/update/{id}")

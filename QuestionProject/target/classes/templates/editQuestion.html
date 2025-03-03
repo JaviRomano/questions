@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Pregunta</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-success">
+	<div class="container mt-5">
+		<h1 class="text-center">Editar Pregunta</h1>
+
+		<div class="card p-4 shadow-lg">
+			<form th:action="@{/question/update/{id}(id=${question.id})}"
+				method="post">
+
+				<input type="hidden" name="id" th:value="${question.id}">
+
+				<div class="mb-3">
+					<label for="text" class="form-label fw-bold">Texto de la
+						Pregunta</label> <input type="text" id="text" name="text"
+						class="form-control" th:value="${question.text}" required>
+				</div>
+
+				<div class="mb-3">
+					<label for="category" class="form-label fw-bold">Categoría</label>
+					<input type="text" id="category" name="category"
+						class="form-control" th:value="${question.category}" required>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label fw-bold">Tipo de Pregunta</label> <input
+						type="text" class="form-control"
+						th:value="${question.TypeOfQuestion.translate}" disabled>
+				</div>
+
+				<div th:if="${question.TypeOfQuestion.name() == 'TRUE_FALSE'}">
+					<label class="form-label fw-bold">Respuesta Correcta</label> <select
+						name="answer" class="form-select">
+						<option value="true" th:selected="${question.answer == true}">Verdadero</option>
+						<option value="false" th:selected="${question.answer == false}">Falso</option>
+					</select>
+				</div>
+
+				<div th:if="${question.TypeOfQuestion.name() == 'MULTIPLE_ANSWER'}">
+
+					<div class="mb-3">
+						<label class="form-label fw-bold">Respuestas Correctas</label>
+						<div id="correctAnswersContainer">
+							<div class="input-group mb-2"
+								th:each="correctAnswer, iterStat : ${question.correctAnswers}">
+								<input type="text" class="form-control" name="correctAnswers"
+									th:value="${correctAnswer}" required>
+								<button type="button" class="btn btn-danger remove-answer">Eliminar</button>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success add-answer"
+							data-target="correctAnswersContainer">Agregar Respuesta
+							Correcta</button>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label fw-bold">Respuestas Incorrectas</label>
+						<div id="failAnswersContainer">
+							<div class="input-group mb-2"
+								th:each="failAnswer, iterStat : ${question.failAnswers}">
+								<input type="text" class="form-control" name="failAnswers"
+									th:value="${failAnswer}" required>
+								<button type="button" class="btn btn-danger remove-answer">Eliminar</button>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success add-answer"
+							data-target="failAnswersContainer">Agregar Respuesta
+							Incorrecta</button>
+					</div>
+				</div>
+
+				<div class="mt-4 d-flex gap-3">
+					<button type="submit" class="btn btn-success fw-bold">Guardar
+						Cambios</button>
+					<a th:href="@{/question/all}" class="btn btn-secondary">Cancelar</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        function addAnswer(event) {
+            const containerId = event.target.getAttribute("data-target");
+            const container = document.getElementById(containerId);
+
+            const div = document.createElement("div");
+            div.classList.add("input-group", "mb-2");
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.classList.add("form-control");
+            input.name = containerId === "correctAnswersContainer" ? "correctAnswers" : "failAnswers";
+            input.required = true;
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.classList.add("btn", "btn-danger", "remove-answer");
+            removeButton.textContent = "Eliminar";
+            removeButton.addEventListener("click", removeAnswer);
+
+            div.appendChild(input);
+            div.appendChild(removeButton);
+            container.appendChild(div);
+        }
+
+        function removeAnswer(event) {
+            event.target.parentElement.remove();
+        }
+
+        document.querySelectorAll(".add-answer").forEach(button => {
+            button.addEventListener("click", addAnswer);
+        });
+
+        document.querySelectorAll(".remove-answer").forEach(button => {
+            button.addEventListener("click", removeAnswer);
+        });
+    });
+</script>
+</body>
+</html>

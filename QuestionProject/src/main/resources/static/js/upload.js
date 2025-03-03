@@ -1,11 +1,18 @@
+import { loadHeader } from "/js/header.js";
+import { createNavbar } from "/js/navbar.js";
+
+loadHeader();
+
 document.addEventListener("DOMContentLoaded", function() {
 	const body = document.body;
-
+	body.prepend(createNavbar());	
+	
 	const mainContainer = document.createElement("main");
-	mainContainer.classList.add("container", "mt-5", "text-center");
+	mainContainer.classList.add("container", "mt-2", "text-center");
 
 	const title = document.createElement("h1");
 	title.classList.add("mb-5");
+	title.style.color = "#000000";
 	title.textContent = "Cargar Preguntas desde JSON";
 
 	const form = document.createElement("form");
@@ -49,15 +56,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	const backgroundContainer = document.createElement("div");
 	backgroundContainer.classList.add("background-container");
 	backgroundContainer	.style.cssText = `
-	        background-image: url('/img/riddler1.jpg');
+	        background-image: url('/img/subida.jpg');
 	        background-size: cover;
 	        background-position: center;
-	        opacity: 0.5;
 	        position: absolute;
 	        top: 0;
 	        left: 0;
-	        width: 100%;
-	        height: 100%;
 	        z-index: -1;
 	   	`;
 	body.appendChild(backgroundContainer);

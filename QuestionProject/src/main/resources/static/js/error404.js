@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	subtitle.style.cssText = "color: #555; font-size: 1.5em; margin-bottom: 20px;";
 
 	const img = document.createElement("img");
-	img.src = "/img/yamcha.jpg";
+	img.src = "/img/zoro.jpg";
 	img.alt = "Error 404";
 	img.style.cssText = "max-width: 400px; margin-bottom: 20px;";
 
