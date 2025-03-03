@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	const apiButtonDiv = document.createElement("div");
 	apiButtonDiv.classList.add("position-fixed", "bottom-0", "start-0", "m-3");
-	apiButtonDiv.innerHTML = `<a href="/api/question/doc" class="btn btn-success">Documentación API</a>`;
+	apiButtonDiv.innerHTML = `<a href="http://localhost:8080/swagger-ui/index.html" class="btn btn-success">Documentación Swagger</a>`;
 
 	body.appendChild(title);
 	body.appendChild(backgroundContainer);

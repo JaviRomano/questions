@@ -1,5 +1,11 @@
 package com.fdez_rumi_questions.app.controller.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
@@ -21,11 +27,17 @@ import com.fdez_rumi_questions.app.service.QuestionService;
 
 @RestController
 @RequestMapping("/api/question")
+@Tag(name = "Gestión de Preguntas", description = "Endpoints para gestionar preguntas")
 public class QuestionRestController {
 
 	@Autowired
 	private QuestionService questionService;
-
+	
+	@Operation(summary = "Obtener todas las preguntas", description = "Devuelve una lista con todas las preguntas registradas.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "Lista de preguntas obtenida correctamente"),
+	    @ApiResponse(responseCode = "404", description = "No hay preguntas registradas")
+	})
 	@GetMapping("/all")
 	public ResponseEntity<List<Question>> getAllQuestions() {
 		List<Question> questions = questionService.getAllQuestions();
@@ -35,6 +47,11 @@ public class QuestionRestController {
 		return ResponseEntity.ok(questions);
 	}
 
+	@Operation(summary = "Obtener una pregunta por ID", description = "Devuelve los datos de una pregunta específica según su ID.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "Pregunta encontrada"),
+	    @ApiResponse(responseCode = "404", description = "Pregunta no encontrada")
+	})
 	@GetMapping("/{id}")
 	public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
 		Question question = questionService.getQuestionById(id);
@@ -44,6 +61,11 @@ public class QuestionRestController {
 		return ResponseEntity.ok(question);
 	}
 	
+	@Operation(summary = "Agregar una nueva pregunta", description = "Crea y almacena una nueva pregunta en la base de datos.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "201", description = "Pregunta creada exitosamente"),
+	    @ApiResponse(responseCode = "400", description = "Datos inválidos o malformados")
+	})
 	@PostMapping("/add")
 	public ResponseEntity<Question> addQuestion(@RequestBody Question newQuestionData) {
 		try {
@@ -55,12 +77,18 @@ public class QuestionRestController {
 		}
 	}
 	
+	@Operation(summary = "Obtener todas las categorías", description = "Devuelve una lista de todas las categorías de preguntas disponibles.")
 	@GetMapping("/categories")
 	public ResponseEntity<Set<String>> getCategories() {
 	    Set<String> categories = questionService.getAllCategories();
 	    return ResponseEntity.ok(categories);
 	}
 
+	@Operation(summary = "Actualizar una pregunta", description = "Modifica los datos de una pregunta existente según su ID.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "Pregunta actualizada correctamente"),
+	    @ApiResponse(responseCode = "404", description = "Pregunta no encontrada")
+	})
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question updatedQuestion) {
 		Question existingQuestion = questionService.getQuestionById(id);
@@ -86,12 +114,22 @@ public class QuestionRestController {
 		return ResponseEntity.ok(savedQuestion);
 	}
 	
+	@Operation(summary = "Eliminar una pregunta", description = "Elimina una pregunta de la base de datos según su ID.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "204", description = "Pregunta eliminada correctamente"),
+	    @ApiResponse(responseCode = "404", description = "Pregunta no encontrada")
+	})
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
 		questionService.deleteQuestion(id);
 		return ResponseEntity.noContent().build();
 	}
 
+	@Operation(summary = "Subir preguntas desde un archivo JSON", description = "Permite cargar preguntas en la base de datos mediante un archivo JSON.")
+	@ApiResponses(value = {
+	    @ApiResponse(responseCode = "200", description = "Archivo procesado correctamente"),
+	    @ApiResponse(responseCode = "400", description = "Error al procesar el archivo JSON")
+	})
 	@PostMapping(value = "/upload", consumes = "multipart/form-data")
 	public ResponseEntity<String> uploadQuestionsFromTheFormFile(@RequestParam("file") MultipartFile file) {
 		try {
